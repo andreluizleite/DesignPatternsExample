@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using DesignPattersExample.Behavioral;
 using DesignPattersExample.Creational;
+using DesignPattersExample.Structural;
 
 public class Program
 {
@@ -12,6 +13,7 @@ public class Program
 
         PerformSorting(array);
         DemonstrateSingletonUsage();
+        DemostrateAdapterUsage();
     }
 
     // Method to initialize an array with random values
@@ -71,5 +73,20 @@ public class Program
         Singleton anotherSingleton = Singleton.Instance;
         anotherSingleton.SomeBusinessLogic();
         Console.WriteLine($"Are both instances the same? {singleton == anotherSingleton}");
+    }
+
+    private static void DemostrateAdapterUsage()
+    {
+        //Create an instance of adaptee
+        var adaptee = new Adaptee();
+
+        //Create an Adapter for the Adaptee
+        ITarget adapter = new Adapter(adaptee);
+
+        //Create a Client with the adapter
+        var client = new Client(adapter);
+
+        //Execute the Client request;
+        client.Execute();
     }
 }
