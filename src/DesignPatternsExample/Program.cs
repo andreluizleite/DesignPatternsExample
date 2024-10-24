@@ -16,7 +16,8 @@ public class Program
         DemonstrateSingletonUsage();
         DemostrateAdapterUsage();
         DemostrateFactoryMethod();
-        DemostrateObserver();      
+        DemostrateObserver();
+        DemostrateDecorator();      
     }
 
     // Method to initialize an array with random values
@@ -119,5 +120,17 @@ public class Program
         subject.Detach(observerA);
         subject.State = 15;
         subject.Notify();
+    }
+
+    private static void DemostrateDecorator()
+    {
+        IComponent component = new ConcreteComponent();
+        Console.WriteLine(component.Operation());
+
+        IComponent componentA = new ConcreteDecoratorA(component);
+        Console.WriteLine(componentA.Operation());
+
+        IComponent componentB = new ConcreteDecoratorB(component);
+        Console.WriteLine(componentB.Operation());
     }
 }
