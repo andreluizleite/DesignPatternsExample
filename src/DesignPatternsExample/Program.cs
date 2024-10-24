@@ -14,6 +14,7 @@ public class Program
         PerformSorting(array);
         DemonstrateSingletonUsage();
         DemostrateAdapterUsage();
+        DemostrateFactoryMethod();        
     }
 
     // Method to initialize an array with random values
@@ -88,5 +89,13 @@ public class Program
 
         //Execute the Client request;
         client.Execute();
+    }
+    private static void DemostrateFactoryMethod()
+    {
+        Creator creatorA = new ConcreteCreatorA();
+        Console.WriteLine(creatorA.GetProductName());
+
+        Creator creatorB = new ConcreteCreatorB();
+        Console.WriteLine(creatorB.GetProductName());
     }
 }
