@@ -1,4 +1,5 @@
-﻿using System;
+﻿//The Observer pattern defines a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.
+using System;
 using System.Diagnostics;
 using DesignPattersExample.Behavioral;
 using DesignPattersExample.Creational;
@@ -14,7 +15,8 @@ public class Program
         PerformSorting(array);
         DemonstrateSingletonUsage();
         DemostrateAdapterUsage();
-        DemostrateFactoryMethod();        
+        DemostrateFactoryMethod();
+        DemostrateObserver();      
     }
 
     // Method to initialize an array with random values
@@ -97,5 +99,25 @@ public class Program
 
         Creator creatorB = new ConcreteCreatorB();
         Console.WriteLine(creatorB.GetProductName());
+    }
+
+    private static void DemostrateObserver()
+    {
+        var subject = new ConcreteSubject();
+        var observerA = new ConcreteObserver("A");
+        subject.Attach(observerA);
+
+        subject.State = 5;
+        subject.Notify();
+
+        var observerB = new ConcreteObserver("B");
+        subject.Attach(observerB);
+
+        subject.State = 10;
+        subject.Notify();
+
+        subject.Detach(observerA);
+        subject.State = 15;
+        subject.Notify();
     }
 }
